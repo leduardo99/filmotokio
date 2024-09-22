@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/head:: head(title='Nova pessoa')"></head>
+<body>
+	<header th:replace="fragments/header"></header>
+	<main>
+	<br/>
+	<br/>
+		<div class="container">
+    		<h1 class="h2">Novo artista</h1>
+     		<form class="row g-3 align-items-center" action="#" th:action="@{/create-person}" th:object="${person}" method="post">
+     			<div class="col-md-4">
+					<label for="name" class="form-label">Nome</label>
+    				<input type="text" class="form-control" id="name" name="name">
+    			</div>
+    			<div class="col-md-4">
+					<label for="surname" class="form-label">Apelido</label>
+    				<input type="text" class="form-control" id="surname" name="surname">
+    			</div>
+    			<div class="col-md-4">
+					<label for="typePersonEnum" class="form-label">Tipo de trabalho</label>
+    				 <select name="typePersonEnum" id="typePersonEnum" class="form-select">
+    				 	<option value="GUIONISTA">Guionista</option>
+    				 	<option value="MUSICO">Músico</option>
+    				 	<option value="FOTOGRAFO">Fotógrafo</option>
+    				 	<option value="ACTOR">Actor</option>
+    				 	<option value="DIRECTOR">Director</option>
+    				 </select>
+    			</div>
+    			<button class="col-2 btn btn-primary btn-lg" type="submit">Registrar Persona</button>
+    		</form>
+    		<br/>
+    		<p th:text="${mensagem}" th:class="${mensagemclass}"></p>
+		</div>
+	</main>
+    <footer th:replace="fragments/footer"></footer>
+</body>
+</html>

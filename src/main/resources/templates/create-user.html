@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/head:: head(title='Registro')"></head>
+<body>
+	<header th:replace="fragments/header"></header>
+	<main>
+  	<br/>
+     
+    <div class="container">
+    <form class="row g-3" action="#" th:action="@{/new-user-admin}" th:object="${user}" method="post">
+    	<div class="col-md-4">
+    		<label for="username" class="form-label">Usuario</label>
+    		<input type="text" class="form-control" id="username" th:field="*{username}" required>
+    	</div>
+    	<div class="col-md-4">
+    		<label for="password" class="form-label">Senha</label>
+    		<input type="password" class="form-control" id="password" th:field="*{password}" required>
+    	</div>
+    	<div class="col-md-4">
+    		<label for="email" class="form-label">E-mail</label>
+    		<input type="text" class="form-control" id="email" th:field="*{email}" required>
+    	</div>
+    	<div class="col-md-4">
+    		<label for="name" class="form-label">Nome</label>
+    		<input type="text" class="form-control" id="name" th:field="*{name}" required>
+    	</div>
+    	<div class="col-md-4">
+    		<label for="surname" class="form-label">Apelido</label>
+    		<input type="text" class="form-control" id="surname" th:field="*{surname}" required>
+    	</div>
+    	  <div class="col-md-4">
+    		<label for="birthDate" class="form-label">Data de nascimento</label>
+    		<input type="date" class="form-control" id="birthDate" th:field="*{birthDate}" required>
+    	</div>
+    	<div class="col-md-4">
+					<label for="roles" class="form-label">Roles</label>
+    				 <select name="roles" id="roles" class="form-select" multiple required>
+    				 	<th:block th:each="role : ${roles}">
+    				 		<option th:text="${role.name}" th:value="${role.id}"></option>
+    				 	</th:block>
+    				 </select>
+    			</div>
+    	<div class="col-12">
+    	 <button class="btn btn-primary" type="submit">Enviar</button>
+    	</div>
+    	
+    </form> 
+     <br/>
+    	<p th:text="${mensaje}" th:class="${mensajeclass}"></p>
+	</div>
+	</main>
+    <footer th:replace="fragments/footer"></footer>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<header xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    	<div class="container-fluid">
+    		<a class="navbar-brand" href="/">FILMOTOKIO</a>
+    		<div sec:authorize="isAuthenticated()" class="collapse navbar-collapse" id="navbarColor01">
+    			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+    				<li class="nav-item">
+    					<a class="nav-link active" aria-current="page" th:href="@{/new-film}">Novo Filme</a>
+    				</li>
+    				<li class="nav-item">
+    					<a class="nav-link active" aria-current="page" th:href="@{/search-film}">Buscar Filme</a>
+    				</li>
+    				  <li class="nav-item">
+    					<a class="nav-link active" aria-current="page" th:href="@{/new-person}">Criar Persona</a>
+    				</li>
+    				<li sec:authorize="hasAuthority('ADMIN')" class="nav-item">
+    					<a class="nav-link active" aria-current="page" th:href="@{/create-user}">Criar Usuario</a>
+    				</li>
+    			</ul>
+    			<div sec:authorize="isAuthenticated()" class="align-items-right">
+    				<img th:src="@{/images/users/user-profile.png}" height="40px" width="40px"/>
+    				<a class="btn btn-outline-primary" th:href="@{/logout}">Sair</a>
+    			</div>
+    		</div>
+    		<div sec:authorize="!isAuthenticated()" class="align.items-right">
+    			<a class="btn btn-outline-primary" th:href="@{/login}">Iniciar sessão</a>
+    			<a class="btn btn-outline-primary" th:href="@{/registration}">Registro</a>
+    		</div>
+    	</div>
+  	</nav>
+  </header>

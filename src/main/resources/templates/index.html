@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/head:: head(title='FilmoTokio')"></head>
+<body>
+	<header th:replace="fragments/header"></header> 
+	<section class="py-5 text-center container">
+    	<h1 class="fw-light">BEM-VINDO AO FILMOTOKIO</h1>
+    	<br/><br/>
+    	<img class="mb-4" th:src="@{/images/tokio.jpg}" alt="Tokio Logo" width="500" height="500">
+    </section>
+   
+    <footer th:replace="fragments/footer"></footer>
+</body>
+</html>

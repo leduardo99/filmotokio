@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/head:: head(title='Buscar filme')"></head>
+<body>
+	<header th:replace="fragments/header"></header>
+    <div class="album py-5 bg-light">
+    	<div class="container">
+      		<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        		<div th:each="film :${films}" class="col">
+          			<div class="card shadow-sm">
+            			<img th:if="${film.poster!=''}" th:src="@{'/upload/' + ${film.poster}}" class="card-img-top" width="300" height="450">
+            			<img th:if="${film.poster==''}" th:src="@{'/images/posters/default-cartel.jpg'}" class="card-img-top" width="300" height="450">
+            			<div class="textoCont">
+            				<h2 th:if="${film.poster==''}" th:text="${film.title}" class="textoImg"></h2>
+            			</div>
+             			<div class="card-body">
+             				<h3 th:text="${film.title}"></h3>
+             				<div class="d-flex justify-content-between align-items-center">
+             					<a class="btn btn-outline-primary" th:href="@{'/film/' + ${film.id}}">Ver Filme</a>
+             				</div>
+            			</div>
+          			</div>
+        		</div>
+       		</div>
+     	</div>
+	</div>
+	<footer th:replace="fragments/footer"></footer>
+</body>
+</html>

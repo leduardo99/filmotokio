@@ -1,0 +1,18 @@
+.textoImg{
+	color: white;
+	text-align: center;
+}
+.textoCont{
+	position: absolute;
+	width: 100%;
+	padding-top: 45%;
+}
+.filmCont{
+	color: white;
+	text-align: center;
+	margin-right: -5%;
+}
+.filmImg{
+	margin-top: -90%;
+	width: 100%;
+}

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/head:: head(title='Buscar filme')"></head>
+<body>
+	<header th:replace="fragments/header"></header>
+	<main>
+		<br/>
+		<div class="container">
+    		<h1 class="h2">Buscar filme</h1>
+     		<form class="row g-3 align-items-center" action="#" th:action="@{/films-result}" method="get">
+     			<div class="col-md-4">
+					<label for="title" class="form-label">Título</label>
+    				<input type="text" class="form-control" id="title" name="title">
+    				<br/>
+    				<button class="col-8 btn btn-primary btn-lg" type="submit">Buscar filme</button>
+    			</div>
+    		</form>
+		</div>
+	</main>
+    <footer th:replace="fragments/footer"></footer>
+</body>
+</html>

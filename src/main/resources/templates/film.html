@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/head:: head(title='Filme')"></head>
+<body>
+	<header th:replace="fragments/header"></header>
+	<main>
+	<br/>
+		<div class="container mt-2 d-flex justify-content-between border">
+			<div class="col-md-10">
+    			<h2 th:text="${film.title} + ' (' + ${media} + ')'" class="text-primary"></h2>
+    			<p th:text="${film.year}" class="text-secondary"></p>
+    			<p><strong>DIRECTOR: </strong><span  th:if="${film.director != null}" th:text="' ' + ${film.director.name} + ' ' + ${film.director.surname}"></span></p>
+    			<p><strong>GUIONISTAS:</strong><th:block th:if="${film.screenwriters != null}" th:each="screenwriter :${film.screenwriters}"><span th:text="' ' + ${screenwriter.name} + ' ' + ${screenwriter.surname}"></span></th:block></p>
+    			<p><strong>MÚSICOS:</strong><th:block th:if="${film.musicians != null}" th:each="musician :${film.musicians}"><span th:text="' ' + ${musician.name} + ' ' + ${musician.surname}"></span></th:block></p>
+    			<p><strong>FOTOGRAFÍA:</strong><span th:if="${film.photographer != null}" th:text="' ' + ${film.photographer.name} + ' ' + ${film.photographer.surname}"></span></p>
+    			<p><strong>ACTORES:</strong><th:block th:if="${film.actors != null}" th:each="actor :${film.actors}"><span th:text="' ' + ${actor.name} + ' ' + ${actor.surname}"></span></th:block></p>
+    			<p th:if="${film.synopsis != null}" th:text="${film.synopsis}"></p>
+    			  <form th:if="${hasScore == false}"  action="#" th:action="@{/new-score}" th:object="${score}" method="post">
+    				<input type="radio" name="score" value="1" th:field="*{value}">1
+    				<input type="radio" name="score" value="2" th:field="*{value}">2
+    				<input type="radio" name="score" value="3" th:field="*{value}">3
+    				<input type="radio" name="score" value="4" th:field="*{value}">4
+    				<input type="radio" name="score" value="5" th:field="*{value}">5
+    				<input type="radio" name="score" value="6" th:field="*{value}">6
+    				<input type="radio" name="score" value="7" th:field="*{value}">7
+    				<input type="radio" name="score" value="8" th:field="*{value}">8 
+    				<input type="radio" name="score" value="9" th:field="*{value}">9
+    				<input type="radio" name="score" value="10" th:field="*{value}">10
+    				<select class="d-none" th:field="*{nameFilm}">
+    					<option th:value="${film.title}" id="title" name="title">1
+    				</select>
+    				<button class="btn btn-primary" type="submit">Votar</button>
+    			</form>
+          			<p th:text="${mensagem}" th:class="${mensagemclass}"></p>
+    		</div>
+    		<div class="col-md-2">
+    		<div class="filmCont">
+    			<img th:if="${film.poster!=''}" th:src="@{'/images/posters/' + ${film.poster}}" class="card-img-top" width="225" height="350">
+            	<img th:if="${film.poster==''}" th:src="@{'/images/posters/default-cartel.jpg'}" class="card-img-top" width="225" height="350">
+            	<div >
+            		<h2 th:if="${film.poster==''}" th:text="${film.title}" class="filmImg"></h2>
+            	</div>
+            	</div>
+    		</div>
+    	</div>
+    	<div class="container mt-2 d-flex justify-content-between border">
+			<div class="col-md-12">
+				<h4 class="text-primary">Críticas</h4>
+				 <form th:if="${hasReview == false}" action="#" th:action="@{/new-review}" th:object="${review}" method="post">
+				 <p><strong>Adicionar crítica</strong></p>
+				 	<input type="text" placeholder="Título" class="form-control" th:field="*{title}" >
+				 	<br/>
+				 	<textarea class="form-control" placeholder="Crítica" th:field="*{textReview}" rows="2" maxlength="1000"></textarea>
+				 	<br/>  
+				 	<select class="d-none" th:field="*{film_review}">
+    					<option th:value="${film.id}" id="id" name="id">1
+    				</select>
+				 	<button class="btn btn-primary" type="submit">Adicionar crítica</button>
+				 </form>
+				 <p th:text="${mensagemRe}" th:class="${mensagemclassRe}"></p>
+				 <br/>
+				 <div th:each="review : ${reviews}">
+				 	<div><h4 class="text-primary" th:text="${review.title}"></h4></div>
+				 	<div th:text="${review.textReview}"></div>
+				 	<br/>
+				 </div>
+			</div>
+		</div>
+	</main>
+    <footer th:replace="fragments/footer"></footer>
+</body>
+</html>

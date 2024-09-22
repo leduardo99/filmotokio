@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/head:: head(title='Novo filme')"></head>
+<body>
+	<header th:replace="fragments/header"></header>
+	<main>
+  	<br/>
+     	<div class="container">
+    	<form class="row g-3" action="#" th:action="@{/create-film}" th:object="${film}" method="post" enctype="multipart/form-data">
+    		<div class="col-md-4">
+    			<label for="title" class="form-label">Título</label>
+    			<input type="text" class="form-control" th:field="*{title}" required>
+    		</div>
+    		<div class="col-md-4">
+    			<label for="year" class="form-label">Ano</label>
+    			<input type="text" class="form-control" th:field="*{year}" required>
+    		</div>
+    		<div class="col-md-4">
+    			<label for="duration" class="form-label">Duração</label>
+    			<input type="text" class="form-control" th:field="*{duration}" required>
+    		</div>
+    	 	<div class="col-md-4">
+    		 	<label for="director" class="form-label">Diretor</label>
+    			<select class="form-select" th:field="*{director}">
+    				<th:block th:each="director :${directores}">
+    					<option th:text="${director.name} + ' ' + ${director.surname}" th:value="${director.id}"></option>
+    				</th:block>
+    			</select>
+    		 	<small class="form-text text-danger" th:if="${#fields.hasErrors('director')}" th:errors="*{director}"></small>
+    		</div> 
+    	 	<div class="col-md-4">
+    			<label for="screenwriters" class="form-label">Guionistas</label>
+    			<select class="form-select" th:field="*{screenwriters}" multiple size="4" required>
+    				<th:block th:each="guionista :${guionistas}">
+    					<option th:text="${guionista.name} + ' ' + ${guionista.surname}" th:value="${guionista.id}"></option>
+    				</th:block>
+    			</select>
+    		</div>
+    		<div class="col-md-4">
+    			<label for="actors" class="form-label">Atores</label>
+    			<select class="form-select" th:field="*{actors}" multiple size="4" required>
+    				<th:block th:each="actor :${actores}">
+    					<option th:text="${actor.name} + ' ' + ${actor.surname}" th:value="${actor.id}"></option>
+    				</th:block>
+    			</select>
+    		</div>
+    		<div class="col-md-4">
+    			<label for="musicians" class="form-label">Músicos</label>
+    			<select class="form-select" th:field="*{musicians}" multiple size="4" required>
+    				<th:block th:each="musico :${musicos}">
+    					<option th:text="${musico.name} + ' ' + ${musico.surname}" th:value="${musico.id}"></option>
+    				</th:block>
+    			</select>
+    		</div>
+    		<div class="col-md-4">
+    			<label for="photographer" class="form-label">Fotógrafo</label>
+    			<select class="form-select" th:field="*{photographer}">
+    				<th:block th:each="fotografo :${fotografos}">
+    					<option th:text="${fotografo.name} + ' ' + ${fotografo.surname}" th:value="${fotografo.id}"></option>
+    				</th:block>
+    			</select>
+    		</div>
+    		<div class="col-md-4">
+    			<label for="synopsis" class="form-label">Sinopsis</label>
+    			<textarea class="form-control" th:field="*{synopsis}" rows="4" maxlength="1500" required></textarea>   
+    		</div>
+   		 	<div class="col-md-4">
+    			<label for="poster" class="form-label">Poster</label>
+    			<input type="file" name="poster" class="form-control" th:field="*{poster}">
+    		</div>
+    		<div class="col-12">
+    	 		<button class="btn btn-primary" type="submit">Enviar</button>
+    		</div>
+    	
+    	</form>
+    	<br/>
+    	<p th:text="${mensagem}" th:class="${mensagemclass}"></p>
+		</div>
+		
+	</main>
+    <footer th:replace="fragments/footer"></footer>
+</body>
+</html>
